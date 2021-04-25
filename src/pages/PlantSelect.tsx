@@ -11,25 +11,13 @@ import api from '../services/api';
 
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
+import { useNavigation } from '@react-navigation/core';
+import { PlantProps } from '../libs/storage';
 
 interface EnvironmentProps{
     key: string;
     title: string
 }
-
-interface PlantProps{
-    id: string;
-    name: string;
-    about: string;
-    water_tips: string;
-    photo: string;
-    environments: string[];
-    frequency: {
-        times: number;
-        repeat_every: 'string';
-    }    
-}
-
 
 export function PlantSelect() {
     const [environments, setEnvironments] = useState<EnvironmentProps[]>([]);
@@ -40,7 +28,8 @@ export function PlantSelect() {
 
     const [page, setPage] = useState(1);
     const [loadingMore, setLoadingMore] = useState(false);
-    const [loadedAll, setLoadedAll] = useState(false);
+
+    const navigator = useNavigation();
 
     const handleEnvironmentSelected = (env: string) => {
         setEnvironmentSelected(env);
@@ -53,6 +42,10 @@ export function PlantSelect() {
         )
 
         setFilteredPlants(filtered);
+    }
+
+    const handlePlantSelected = (plant: PlantProps) => {
+        navigator.navigate('PlantSave', { plant });
     }
 
     async function fetchPlants(){
@@ -141,6 +134,7 @@ export function PlantSelect() {
                 renderItem={( { item } )=> (                                    
                     <PlantCardPrimary 
                         data={item}
+                        onPress={() => handlePlantSelected(item)}
                     />
                 )}
                 numColumns={2}
