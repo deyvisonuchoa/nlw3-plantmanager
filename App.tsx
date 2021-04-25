@@ -22,13 +22,13 @@ export default function App(){
 
     // return () => subscription.remove();
 
-    // async function notifications() {
-      // const data = await Notifications.getAllScheduledNotificationsAsync();
-      // console.log(data);
-      // await Notifications.cancelAllScheduledNotificationsAsync();
-    // }
+    async function notifications() {
+      const data = await Notifications.getAllScheduledNotificationsAsync();
+      console.log(data);
+      await Notifications.cancelAllScheduledNotificationsAsync();
+    }
 
-    // notifications();
+    notifications();
   })
 
   if(!fontsLoaded){
