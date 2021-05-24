@@ -38,7 +38,7 @@ Several places use plants, be it their home or business, and nowadays the human 
 *Clone the project and access the folder*
 
 ```bash
-$ git clone https://github.com/hmartiins/plantmanager 
+$ git clone https://github.com/deyvisonuchoa/nlw5-plantmanager.git
 $ cd plantmanager
 ```
 
